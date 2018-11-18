@@ -7,6 +7,11 @@ module Api
       end
       private :create_url_params
 
+      def show
+        render json: { foo: "bar" }, status: :ok
+
+      end
+
       def create
         unless Url.valid_url?(create_url_params)
           return render json: { error: "input url is not valid" }, status: :unprocessable_entity
