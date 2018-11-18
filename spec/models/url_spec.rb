@@ -7,10 +7,10 @@ RSpec.describe Url, type: :model do
       let(:slug) { "thisisavalidslug" }
 
       it "returns true" do
-        expect(described_class.valid_slug?(slug)).to eq(false)
+        expect(described_class.valid_slug?(slug)).to eq(true)
       end
     end
-    
+
     describe "when the slug contains non alphanumeric characters" do
       let(:slug) { "this/isnt/a/valid/slug" }
 
