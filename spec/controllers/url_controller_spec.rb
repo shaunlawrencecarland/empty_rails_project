@@ -1,5 +1,3 @@
 require 'rails_helper'
-
-RSpec.describe UrlController, type: :controller do
-
+RSpec.describe Api::V1::UrlsController, type: :controller do
 end
