@@ -19,7 +19,7 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
       end
 
       it "returns a 400 status code" do
-        expect(response.status).to eq(400)
+        expect(response.status).to eq(422)
       end
 
       it "returns a bad url error message" do
