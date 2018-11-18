@@ -1,6 +1,20 @@
 require 'rails_helper'
+
+# TODO: Remove slug column
 RSpec.describe Url, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "self.encode" do
+    it "encodes the integer correctly" do
+      expect(described_class.encode(1)).to eq("b")
+    end
+  end
+
+  describe "self.decode" do
+    it "decodes the slug correctly" do
+      expect(described_class.decode("b")).to eq(1)
+    end
+  end
 
   describe "self.valid_url?" do
     context "invalid urls" do
