@@ -2,7 +2,23 @@ require 'rails_helper'
 
 # TODO: Remove slug column
 RSpec.describe Url, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "self.valid_slug?" do
+    describe "when the slug only contains alphanumeric characters" do
+      let(:slug) { "thisisavalidslug" }
+
+      it "returns true" do
+        expect(described_class.valid_slug?(slug)).to eq(false)
+      end
+    end
+    
+    describe "when the slug contains non alphanumeric characters" do
+      let(:slug) { "this/isnt/a/valid/slug" }
+
+      it "returns false" do
+        expect(described_class.valid_slug?(slug)).to eq(false)
+      end
+    end
+  end
 
   describe "self.encode" do
     it "encodes the integer correctly" do
