@@ -31,6 +31,17 @@ RSpec.describe RedirectUrlController, type: :controller do
         it "redirects the user to the URL" do
           expect(subject).to redirect_to("http://google.com")
         end
+
+        context "incrementing the count" do
+          describe "when the url is not able to be saved" do
+            before(:each) { allow_any_instance_of(Url).to receive(:save).and_return(false) }
+
+            it "logs an error message" do
+              subject
+              expect(Rails.logger).to receive(:error)
+            end
+           end
+        end
       end
     end
 
