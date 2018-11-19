@@ -1,4 +1,16 @@
-Create a new URL<br>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<%= yield %>
+
+
+Create a new URL:<br>
+<%= form_for(:url, url: "api/v1/urls#create") do |f| %>
+  <%= f.label :url %>:
+  <%= f.text_field :url %><br>
+
+  <%= f.submit %>
+<% end %>
 
 Top <%= @urls.length %> URLs:
 <table>
