@@ -25,6 +25,8 @@ module Api
         if !@url.nil? && @url.save
           return render json: @url, status: :ok
         else
+          log_msg = "Error creating URL. URL parameter: #{create_url_params} URL Object: #{@url.to_json}"
+          Rails.logger.error log_msg
           return render json: { error: "url was not shortened" }, status: :unprocessable_entity
         end
       end

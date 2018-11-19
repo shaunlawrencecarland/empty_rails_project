@@ -18,6 +18,15 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
       end
     end
 
+    describe "when there is an error with saving the url" do
+      before(:each) { allow_any_instance_of(Url).to receive(:save).and_return(false) }
+
+      it "logs an error message" do
+        expect(Rails.logger).to receive(:error)
+        post :create, params: { url: "http://google.com" }
+      end
+    end
+
     describe "when the URL is not in a valid format" do
       before(:each) do
         allow(Url).to receive(:valid_url?).and_return(false)
@@ -31,11 +40,6 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
       it "returns a bad url error message" do
         response_body = ActiveSupport::JSON.decode(response.body).stringify_keys
         expect(response_body).to eq({ "error" => "input url is not valid" })
-      end
-
-      it "logs an error message" do
-        post :create, params: { url: "google.com" }
-        Rails.logger.should_receive(:error).with("Error ")
       end
     end
   end
