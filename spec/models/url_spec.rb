@@ -7,7 +7,9 @@ RSpec.describe Url, type: :model do
       it "prepends 'http://' to the front" do
         # TODO: use factorybot
         url = Url.new({path: "google.com"})
+        url.save
         expect(url.path).to eq('http://google.com')
+        url.delete
       end
     end
   end

@@ -8,13 +8,13 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
       end
 
       it "creates a new URL object with correct path and slug" do
-        expect { post :create, params: { url: "google.com" } }
+        expect { post :create, params: { url: "http://www.google.com" } }
           .to change{Url.count}.from(0).to(1)
 
         url = Url.first
 
         expect(url.slug).to eq("b")
-        expect(url.path).to eq("google.com")
+        expect(url.path).to eq("http://www.google.com")
       end
     end
 
