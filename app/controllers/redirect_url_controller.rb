@@ -12,7 +12,11 @@ class RedirectUrlController < ApplicationController
     url_id = UrlHelper.decode(@slug)
     @url = Url.find(url_id)
 
-    
+
     render json: {slug: params[:slug]}, status: :ok
+  end
+
+  def redirect_params
+    params.require(:slug)
   end
 end
