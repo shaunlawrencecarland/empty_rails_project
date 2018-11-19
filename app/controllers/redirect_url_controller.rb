@@ -10,7 +10,7 @@ class RedirectUrlController < ApplicationController
     # test to see if the slug exists in the DB
       # if not, return :unprocessable_entity status
     unless Url.valid_slug?(slug)
-      render json: {error: "Slug not valid.  Slug must contain only alphanumeric characters"}, status: :unprocessable_entity
+      return render json: {error: "Slug not valid.  Slug must contain only alphanumeric characters"}, status: :unprocessable_entity
     end
 
     url_id = UrlHelper.decode(slug)

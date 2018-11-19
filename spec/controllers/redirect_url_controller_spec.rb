@@ -39,7 +39,7 @@ RSpec.describe RedirectUrlController, type: :controller do
 
       it "returns a 422 status" do
         subject
-        expect(response.staut).to eq(422)
+        expect(response.status).to eq(422)
       end
 
       it "returns an error message" do
