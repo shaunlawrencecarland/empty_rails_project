@@ -9,7 +9,6 @@ module Api
 
       def show
         render json: { foo: "bar" }, status: :ok
-
       end
 
       def create

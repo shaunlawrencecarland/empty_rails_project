@@ -32,6 +32,11 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
         response_body = ActiveSupport::JSON.decode(response.body).stringify_keys
         expect(response_body).to eq({ "error" => "input url is not valid" })
       end
+
+      it "logs an error message" do
+        post :create, params: { url: "google.com" }
+        Rails.logger.should_receive(:error).with("Error ")
+      end
     end
   end
 end
