@@ -15,35 +15,4 @@ class Url < ApplicationRecord
   def self.valid_url?(url)
     !!(url.match(URL_REGEX))
   end
-
-  # TODO: Edit this method documentation
-  # Take in a URL and create a shortened version of the URL
-  # Input: [String] url  - The full URL
-  # Output: [String]
-  def self.encode(id)
-    UrlHelper.encode(id)
-
-    # slug = ''
-    # encoding_base = ENCODING_CHARS
-    #
-    # until id <= 0 do
-    #   slug << ENCODING_CHARS[id.modulo(ENCODING_BASE)]
-    #   id = id / ENCODING_BASE
-    # end
-    # slug.reverse
-  end
-
-  # TODO: Write better documentation for this
-  # Take a slug (shortened URL) and return the corresponding URL
-  # Input: [String] slug - The shortened URL
-  # Output: [String] - The full URL
-
-  def self.decode(slug)
-    id = 0
-
-    slug.each_char do |c|
-      id = id * ENCODING_BASE + ENCODING_CHARS.index(c)
-    end
-    id
-  end
 end

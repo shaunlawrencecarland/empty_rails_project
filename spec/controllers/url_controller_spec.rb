@@ -2,24 +2,19 @@ require 'rails_helper'
 RSpec.describe Api::V1::UrlsController, type: :controller do
   describe "#create" do
     describe "when the URL is in valid format" do
-      before(:each) do
-        allow(Url).to receive(:valid_url?).and_return(true)
-        allow(Url).to receive(:encode).and_return("encoded_slug")
-      end
-
       it "returns a 200 response" do
-        post :create, params: { url: "good url" }
+        post :create, params: { url: "google.com" }
         expect(response.status).to eq(200)
       end
 
       it "creates a new URL object with correct path and slug" do
-        expect { post :create, params: { url: "good url" } }
+        expect { post :create, params: { url: "google.com" } }
           .to change{Url.count}.from(0).to(1)
 
         url = Url.first
 
-        expect(url.slug).to eq("encoded_slug")
-        expect(url.path).to eq("good url")
+        expect(url.slug).to eq("b")
+        expect(url.path).to eq("google.com")
       end
     end
 

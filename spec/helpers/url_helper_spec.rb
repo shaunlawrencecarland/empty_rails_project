@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the UrlHelper. For example:
-#
-# describe UrlHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe UrlHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "self.encode" do
+    it "encodes the integer correctly" do
+      expect(described_class.encode(1)).to eq("b")
+    end
+  end
+
+  describe "self.decode" do
+    it "decodes the slug correctly" do
+      expect(described_class.decode("b")).to eq(1)
+    end
+  end
 end

@@ -20,18 +20,6 @@ RSpec.describe Url, type: :model do
     end
   end
 
-  describe "self.encode" do
-    it "encodes the integer correctly" do
-      expect(described_class.encode(1)).to eq("b")
-    end
-  end
-
-  describe "self.decode" do
-    it "decodes the slug correctly" do
-      expect(described_class.decode("b")).to eq(1)
-    end
-  end
-
   describe "self.valid_url?" do
     context "invalid urls" do
       let(:url) { "foo" }

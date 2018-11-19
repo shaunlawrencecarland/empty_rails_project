@@ -20,7 +20,7 @@ module Api
         ActiveRecord::Base.transaction do
           @url = Url.new(path: params[:url])
           @url.save!
-          @url.slug = Url.encode(@url.id)
+          @url.slug = UrlHelper.encode(@url.id)
         end
 
         if !@url.nil? && @url.save
