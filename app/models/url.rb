@@ -21,14 +21,16 @@ class Url < ApplicationRecord
   # Input: [String] url  - The full URL
   # Output: [String]
   def self.encode(id)
-    slug = ''
-    encoding_base = ENCODING_CHARS
+    UrlHelper.encode(id)
 
-    until id <= 0 do
-      slug << ENCODING_CHARS[id.modulo(ENCODING_BASE)]
-      id = id / ENCODING_BASE
-    end
-    slug.reverse
+    # slug = ''
+    # encoding_base = ENCODING_CHARS
+    #
+    # until id <= 0 do
+    #   slug << ENCODING_CHARS[id.modulo(ENCODING_BASE)]
+    #   id = id / ENCODING_BASE
+    # end
+    # slug.reverse
   end
 
   # TODO: Write better documentation for this
