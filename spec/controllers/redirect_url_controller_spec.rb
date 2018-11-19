@@ -16,7 +16,7 @@ RSpec.describe RedirectUrlController, type: :controller do
       end
 
       describe "and there is a url corresponding with the slug" do
-        let(:url) { FactoryBot.create(:url, id: 1, path: "http://google.com", slug: "b") }
+        let!(:url) { FactoryBot.create(:url, path: "http://google.com", slug: "b") }
 
         it "returns a 301 response status" do
           subject
