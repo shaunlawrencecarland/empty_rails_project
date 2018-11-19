@@ -34,15 +34,15 @@ RSpec.describe RedirectUrlController, type: :controller do
 
         context "incrementing the count" do
           it "increments the URL's count" do
-            expect { subject }.to change { url.count }.from(0).to(1)
+            expect { subject }.to change { url.reload.count }.from(0).to(1)
           end
-          
+
           describe "when the url is not able to be saved" do
             before(:each) { allow_any_instance_of(Url).to receive(:save).and_return(false) }
 
             it "logs an error message" do
-              subject
               expect(Rails.logger).to receive(:error)
+              subject
             end
           end
         end
