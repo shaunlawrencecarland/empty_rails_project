@@ -6,6 +6,7 @@ RSpec.describe Url, type: :model do
     describe "when a url is created with a path not including the protocol" do
       it "prepends 'http://' to the front" do
         # TODO: use factorybot
+        # TODO: Not here, but look for all of the allow blocks
         url = Url.new({path: "google.com"})
         url.save
         expect(url.path).to eq('http://google.com')
