@@ -7,11 +7,6 @@ module Api
       end
       private :create_url_params
 
-      def index
-        @urls = Url.all.sort_by{ |url| url.hit_count }.reverse.limit(100)
-        render template: "urls#index"
-      end
-
       def create
         unless Url.valid_url?(create_url_params)
           return render json: { error: "input url is not valid" }, status: :unprocessable_entity
