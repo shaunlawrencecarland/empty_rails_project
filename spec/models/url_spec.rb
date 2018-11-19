@@ -4,13 +4,9 @@ require 'rails_helper'
 RSpec.describe Url, type: :model do
   describe "prepend_path_with_protocol_if_missing" do
     describe "when a url is created with a path not including the protocol" do
-      it "prepends 'http://' to the front" do
-        # TODO: use factorybot
-        # TODO: Not here, but look for all of the allow blocks
-        url = Url.new({path: "google.com"})
-        url.save
+      let(:url) { FactoryBot.create(:url, path: "google.com") }
+      it "prepends 'http://' to the front of the url path" do
         expect(url.path).to eq('http://google.com')
-        url.delete
       end
     end
   end
