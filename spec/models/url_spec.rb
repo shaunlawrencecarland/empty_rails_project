@@ -2,6 +2,16 @@ require 'rails_helper'
 
 # TODO: Remove slug column
 RSpec.describe Url, type: :model do
+  describe "prepend_path_with_protocol_if_missing" do
+    describe "when a url is created with a path not including the protocol" do
+      it "prepends 'http://' to the front" do
+        # TODO: use factorybot
+        url = Url.new({path: "google.com"})
+        expect(url.path).to eq('http://google.com')
+      end
+    end
+  end
+
   describe "self.valid_slug?" do
     describe "when the slug only contains alphanumeric characters" do
       let(:slug) { "thisisavalidslug" }
