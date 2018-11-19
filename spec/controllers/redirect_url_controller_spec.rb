@@ -34,7 +34,7 @@ RSpec.describe RedirectUrlController, type: :controller do
 
         context "incrementing the count" do
           it "increments the URL's count" do
-            expect { subject }.to change { url.reload.count }.from(0).to(1)
+            expect { subject }.to change { url.reload.hit_count }.from(0).to(1)
           end
 
           describe "when the url is not able to be saved" do

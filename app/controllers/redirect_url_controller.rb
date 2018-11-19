@@ -13,7 +13,7 @@ class RedirectUrlController < ApplicationController
 
     url_id = UrlHelper.decode(slug)
     url = Url.find(url_id)
-    url.count += 1
+    url.hit_count += 1
 
     unless url.save
       msg = "Error incrementing the URL's count.  URL: #{url.to_json}.  Slug param: #{slug}"
