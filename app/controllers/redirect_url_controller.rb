@@ -1,5 +1,5 @@
 class RedirectUrlController < ApplicationController
   def index
-    render json: {path: params[:path]}, status: :ok
+    render json: {slug: params[:slug]}, status: :ok
   end
 end

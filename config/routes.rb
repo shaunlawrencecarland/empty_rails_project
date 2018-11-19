@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get "*path", to: "redirect_url#index"
+  get "*slug", to: "redirect_url#index"
 end
