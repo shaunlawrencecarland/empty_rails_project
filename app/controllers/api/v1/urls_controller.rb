@@ -7,8 +7,9 @@ module Api
       end
       private :create_url_params
 
-      def show
-        render json: { foo: "bar" }, status: :ok
+      def index
+        @urls = Url.all.sort_by{ |url| url.hit_count }.reverse.limit(100)
+        render template: "urls#index"
       end
 
       def create
