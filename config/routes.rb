@@ -9,3 +9,4 @@ Rails.application.routes.draw do
 
   get "*slug", to: "redirect_url#index"
 end
+ 

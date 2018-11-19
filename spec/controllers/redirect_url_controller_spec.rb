@@ -7,11 +7,16 @@ RSpec.describe RedirectUrlController, type: :controller do
       let(:slug) { "b" }
 
       describe "and there is not a url corresponding with the slug" do
-        let(:url) { FactoryBot.create(:url, id: 2, path: "http://google.com", slug: "c") }
-
         it "returns a 404 status code" do
           subject
           expect(response.status).to eq(404)
+        end
+
+        it "returns an error message telling the user that the url was not found" do
+          subject
+
+          response_body = ActiveSupport::JSON.decode(response.body).stringify_keys
+          expect(response_body).to eq({ "error" => "URL with slug: 'b' was not found" })
         end
       end
 
