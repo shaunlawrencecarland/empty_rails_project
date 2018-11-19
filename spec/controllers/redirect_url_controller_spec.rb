@@ -46,7 +46,8 @@ RSpec.describe RedirectUrlController, type: :controller do
         subject
 
         response_body = ActiveSupport::JSON.decode(response.body).stringify_keys
-        expect(response_body).to eq({ "error" => "Slug not valid.  Slug must contain only alphanumeric characters" })
+        msg = "Slug not valid.  Slug must contain only alphanumeric characters"
+        expect(response_body).to eq({ "error" => msg })
       end
     end
   end
