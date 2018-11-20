@@ -1,6 +1,10 @@
 module Api
   module V1
     class UrlsController < ApplicationController
+      def invalid_url_format(exception)
+        binding.pry
+      end
+
       def url_params
         params.require(:url).permit(:path)
       end
@@ -12,14 +16,16 @@ module Api
       end
 
       def create
-        # unless Url.valid_url?(url_params["path"])
-        #   return render json: { error: "input url is not valid" }, status: :unprocessable_entity
-        # end
-
+        # TODO: Put all of this in the UrlHelper method
         ActiveRecord::Base.transaction do
           @url = Url.new(path: url_params["path"])
-          @url.save!
-          @url.slug = UrlHelper.encode(@url.id)
+          if @url.valid?
+            @url.save!
+            @url.slug = UrlHelper.encode(@url.id)
+          else
+            return render json: { error: "input url is not valid" }, status: :unprocessable_entity
+          end
+          @url.save
         end
 
         if !@url.nil? && @url.save
