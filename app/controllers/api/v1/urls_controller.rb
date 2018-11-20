@@ -8,12 +8,16 @@ module Api
       private :create_url_params
 
       def create
-        unless Url.valid_url?(create_url_params[:url])
+        # binding.pry
+
+        # return render json: { params: params, create_url_params: create_url_params }
+
+        unless Url.valid_url?(create_url_params)
           return render json: { error: "input url is not valid" }, status: :unprocessable_entity
         end
 
         ActiveRecord::Base.transaction do
-          @url = Url.new(path: create_url_params[:url])
+          @url = Url.new(path: create_url_params)
           @url.save!
           @url.slug = UrlHelper.encode(@url.id)
         end
