@@ -17,24 +17,33 @@ module Api
 
       def create
         # TODO: Put all of this in the UrlHelper method
-        ActiveRecord::Base.transaction do
-          @url = Url.new(path: url_params["path"])
-          if @url.valid?
-            @url.save!
-            @url.slug = UrlHelper.encode(@url.id)
-          else
-            return render json: { error: "input url is not valid" }, status: :unprocessable_entity
-          end
-          @url.save
-        end
+        # ActiveRecord::Base.transaction do
+        #   @url = Url.new(path: url_params["path"])
+        #   if @url.valid?
+        #     @url.save!
+        #     @url.slug = UrlHelper.encode(@url.id)
+        #   else
+        #     return render json: { error: "input url is not valid" }, status: :unprocessable_entity
+        #   end
+        #   @url.save
+        # end
 
-        if !@url.nil? && @url.save
+        @url = UrlConstructor.create!(url_params["path"])
+
+        if @url.errors.empty?
           return render json: @url, status: :ok
         else
           log_msg = "Error creating URL. URL parameter: #{url_params} URL Object: #{@url.to_json}"
           Rails.logger.error log_msg
           return render json: { error: "url was not shortened" }, status: :unprocessable_entity
         end
+        # if !@url.nil? && @url.save
+        #   return render json: @url, status: :ok
+        # else
+        #   log_msg = "Error creating URL. URL parameter: #{url_params} URL Object: #{@url.to_json}"
+        #   Rails.logger.error log_msg
+        #   return render json: { error: "url was not shortened" }, status: :unprocessable_entity
+        # end
       end
     end
   end

@@ -20,15 +20,6 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
         expect(url.slug).to eq("b")
         expect(url.path).to eq("http://google.com")
       end
-
-      describe "and there is an error with saving the url" do
-        before(:each) { allow_any_instance_of(Url).to receive(:save).and_return(false) }
-
-        it "logs an error message" do
-          expect(Rails.logger).to receive(:error)
-          subject
-        end
-      end
     end
 
     describe "when the URL is not in a valid format" do
@@ -41,7 +32,7 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
 
       it "returns a bad url error message" do
         response_body = ActiveSupport::JSON.decode(response.body).stringify_keys
-        expect(response_body).to eq({ "error" => "input url is not valid" })
+        expect(response_body).to eq({ "error" => "url was not shortened" })
       end
     end
   end
