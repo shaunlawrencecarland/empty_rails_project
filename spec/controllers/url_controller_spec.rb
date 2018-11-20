@@ -2,9 +2,9 @@ require 'rails_helper'
 RSpec.describe UrlsController, type: :controller do
   describe "#create" do
     describe "when the URL is in valid format" do
-      it "returns a 302 response" do
+      it "returns a 200 response" do
         post :create, params: { url: "google.com" }
-        expect(response.status).to eq(302)
+        expect(response.status).to eq(200)
       end
 
       it "creates a new URL object with correct path and slug" do
