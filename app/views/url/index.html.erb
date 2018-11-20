@@ -1,4 +1,8 @@
-Create a new URL<br>
+Create a new URL:<br>
+
+<%= form_for :url do |f| %>
+  URL: <%= f.text_field :path, url: "api/v1/urls" %>
+<% end %>
 
 Top <%= @urls.length %> URLs:
 <table>
