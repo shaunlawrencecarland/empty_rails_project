@@ -8,7 +8,8 @@ module Api
       private :create_url_params
 
       def index
-        render json: { foo: "bar" }
+        @urls = Url.order(hit_count: :desc).limit(100)
+        render "url/index"        
       end
 
       def create
