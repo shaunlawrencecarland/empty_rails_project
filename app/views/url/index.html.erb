@@ -1,7 +1,8 @@
 Create a new URL:<br>
-
-<%= form_for :url do |f| %>
-  URL: <%= f.text_field :path, url: "api/v1/urls" %>
+<%= form_for(:url, url: "api/v1/urls#create") do |f| %>
+  <%= f.label :url %>:
+  <%= f.text_field :path %><br>
+  <%= f.submit %>
 <% end %>
 
 Top <%= @urls.length %> URLs:

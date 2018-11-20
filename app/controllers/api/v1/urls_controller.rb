@@ -3,22 +3,22 @@ module Api
     class UrlsController < ApplicationController
       # TODO: Can I make this better??
       def create_url_params
-        params.require(:url)
+        params.require(:url).permit(:path)
       end
       private :create_url_params
 
       def index
         @urls = Url.order(hit_count: :desc).limit(100)
-        render "url/index"        
+        render "url/index"
       end
 
       def create
-        unless Url.valid_url?(create_url_params)
+        unless Url.valid_url?(create_url_params["path"])
           return render json: { error: "input url is not valid" }, status: :unprocessable_entity
         end
 
         ActiveRecord::Base.transaction do
-          @url = Url.new(path: params[:url])
+          @url = Url.new(path: create_url_params["path"])
           @url.save!
           @url.slug = UrlHelper.encode(@url.id)
         end
