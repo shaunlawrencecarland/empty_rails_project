@@ -1,7 +1,6 @@
 module Api
   module V1
     class UrlsController < ApplicationController
-      # TODO: Can I make this better??
       def url_params
         params.require(:url).permit(:path)
       end
