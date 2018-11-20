@@ -29,6 +29,16 @@ RSpec.describe Url, type: :model do
     end
   end
 
+  describe "path_validation" do
+    describe "invalid urls" do
+      let(:url) { FactoryBot.create(:url, path: "foo") }
+
+      it "raises a ActiveRecord::RecordInvalid error" do
+        expect { url.save }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+  end
+
   describe "self.valid_url?" do
     context "invalid urls" do
       let(:url) { "foo" }

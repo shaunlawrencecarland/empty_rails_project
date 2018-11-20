@@ -12,9 +12,9 @@ module Api
       end
 
       def create
-        unless Url.valid_url?(url_params["path"])
-          return render json: { error: "input url is not valid" }, status: :unprocessable_entity
-        end
+        # unless Url.valid_url?(url_params["path"])
+        #   return render json: { error: "input url is not valid" }, status: :unprocessable_entity
+        # end
 
         ActiveRecord::Base.transaction do
           @url = Url.new(path: url_params["path"])
