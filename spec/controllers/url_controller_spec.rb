@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe Api::V1::UrlsController, type: :controller do
+RSpec.describe UrlsController, type: :controller do
   describe "#create" do
     describe "when the URL is in valid format" do
       it "returns a 302 response" do
