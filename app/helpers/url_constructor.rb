@@ -11,8 +11,14 @@ class UrlConstructor
           break unless save_url!
         end
       rescue ActiveRecord::RecordNotUnique => e
+<<<<<<< HEAD
         existing_url = Url.where(path: @url.path).first
         existing_slug = existing_url.slug
+=======
+        existing_url = Url.find_by(path: @url.path)
+        # first =
+        # existing_slug = existing_url.slug
+>>>>>>> heroku-fix
         msg = "foo"
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
