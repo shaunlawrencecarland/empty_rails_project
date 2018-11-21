@@ -20,6 +20,14 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
         expect(url.slug).to eq("b")
         expect(url.path).to eq("http://google.com")
       end
+
+      describe "and there is already a URL with the same path" do
+        let!(:url) { FactoryBot.create(:url, path: "http://google.com") }
+
+        it "does not create a new url" do
+          expect { subject }.to_not change { Url.count }
+        end
+      end
     end
 
     describe "when the URL is not in a valid format" do
