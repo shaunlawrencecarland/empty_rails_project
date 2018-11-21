@@ -6,12 +6,13 @@ class UrlConstructor
       begin
         if @url.valid?
           break unless save_url!
+          @slug = UrlHelper.encode(@url.id)
           @url.slug = UrlHelper.encode(@url.id)
           break unless save_url!
         end
       rescue ActiveRecord::RecordNotUnique => e
-        existing_url = Url.where(path: @url.path)
-        # existing_slug = existing_url.slug
+        existing_url = Url.where(path: @url.path).first
+        existing_slug = existing_url.slug
         msg = "foo"
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
