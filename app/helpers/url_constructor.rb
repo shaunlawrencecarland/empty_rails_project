@@ -29,6 +29,7 @@ class UrlConstructor
 
   def self.path_already_exists?
     existing_url = Url.where(path: @url.path).first
+    boom = 1/0
 
     if !existing_url.nil?
       boom = 1/0
