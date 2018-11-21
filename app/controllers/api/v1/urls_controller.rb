@@ -1,7 +1,6 @@
 module Api
   module V1
     class UrlsController < ApplicationController
-
       def index
         @urls = Url.order(hit_count: :desc).limit(100)
         render "url/index"

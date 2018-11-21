@@ -1,11 +1,11 @@
 class RedirectUrlController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound do |exception|
+  rescue_from ActiveRecord::RecordNotFound do
     msg = "URL with slug: '#{slug}' was not found"
     render json: { error: msg }, status: 404
   end
 
   def index
-    unless Url.valid_slug?(slug)
+    unless valid_slug?(slug)
       msg = "Slug not valid.  Slug must contain only alphanumeric characters"
       return render json: {error: msg}, status: :unprocessable_entity
     end
@@ -25,5 +25,9 @@ class RedirectUrlController < ApplicationController
   private
   def slug
     params.require(:slug)
+  end
+
+  def valid_slug?(slug)
+      !!(slug.match(UrlHelper.slug_regex))
   end
 end

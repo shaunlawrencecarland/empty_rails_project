@@ -8,6 +8,7 @@ module UrlHelper
       slug += CHARS[i.modulo(CHARS.length)]
       i = i / CHARS.length
     end
+    
     slug.reverse
   end
 
@@ -16,7 +17,7 @@ module UrlHelper
   end
 
   def self.url_regex
-/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/
+    /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/
   end
 
   def self.slug_regex
