@@ -1,6 +1,18 @@
 class UrlConstructor
   def self.create!(path)
-    @url = Url.new(path: path)
+    @path = path
+    prepend_path_with_protocol_if_missing
+
+
+    @url = Url.first_or_initialize(path: @path)
+
+    if @url.slug
+       msg = "URL #{path} already exists.  Its slug is #{@url.slug}"
+
+       # todo: this shouldn't be an error.  just a message for now...
+       # @url.errors.add(:path, msg)
+       return @url
+    end
 
     ActiveRecord::Base.transaction do
       begin
@@ -61,6 +73,12 @@ class UrlConstructor
     else
       @url.errors.add(:base, "Error: URL could not be saved for an unknown reason")
       return false
+    end
+  end
+
+  def self.prepend_path_with_protocol_if_missing
+    unless @path[/\Ahttp:\/\//] || @path[/\Ahttps:\/\//]
+      @path = "http://#{self.path}"
     end
   end
 end
