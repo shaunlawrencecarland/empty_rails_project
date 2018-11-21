@@ -3,7 +3,7 @@ class UrlConstructor
     @path = path
     prepend_path_with_protocol_if_missing
 
-    @url = Url.first_or_initialize(path: @path)
+    @url = Url.find_or_initialize_by(path: @path)
 
     if @url.slug
        msg = "URL #{path} already exists.  Its slug is #{@url.slug}"
