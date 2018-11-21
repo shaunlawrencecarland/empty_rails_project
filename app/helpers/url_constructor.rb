@@ -5,6 +5,7 @@ class UrlConstructor
     ActiveRecord::Base.transaction do
       begin
         if @url.valid?
+          break if path_already_exists?
           break unless save_url!
           @slug = UrlHelper.encode(@url.id)
           @url.slug = UrlHelper.encode(@url.id)
@@ -17,12 +18,22 @@ class UrlConstructor
         # puts "~~~: #{existing_url}"
         # first =
         # existing_slug = existing_url.slug
-        msg = "error: #{e.to_s} existing_url count: #{existing_url.count}"
+        msg = "error to s: #{e.to_s} error inspect: #{e.inspection} error"
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
       end
     end
     @url
+  end
+
+  def self.path_already_exists?
+    existing_url = Url.where(path: @url.path).first
+
+    if !existing_url.nil?
+      msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
+    else
+      true
+    end
   end
 
   def self.save_url!
