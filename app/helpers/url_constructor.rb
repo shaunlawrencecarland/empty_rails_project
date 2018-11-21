@@ -3,7 +3,6 @@ class UrlConstructor
     @path = path
     prepend_path_with_protocol_if_missing
 
-
     @url = Url.first_or_initialize(path: @path)
 
     if @url.slug
@@ -78,7 +77,7 @@ class UrlConstructor
 
   def self.prepend_path_with_protocol_if_missing
     unless @path[/\Ahttp:\/\//] || @path[/\Ahttps:\/\//]
-      @path = "http://#{self.path}"
+      @path = "http://#{@path}"
     end
   end
 end
