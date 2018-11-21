@@ -13,14 +13,14 @@ class UrlConstructor
           # end
         end
       rescue ActiveRecord::RecordNotUnique => e
-        # existing_url = Url.find_by(path: @path)
+        existing_url = Url.find_by(path: @path)
         # existing_url = Url.where(path: @url.path)
         #
         # # first_ex = existing_url.first
         # # puts "~~~: #{existing_url}"
         # # first =
         # # existing_slug = existing_url.slug
-        msg = "url: #{@url.to_json} error to s: #{e.to_s} error inspect: #{e.inspect} error cause: #{e.cause} "
+        msg = "existing_url: #{existing_url.to_json} error to s: #{e.to_s} error inspect: #{e.inspect} error cause: #{e.cause} "
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
       end
