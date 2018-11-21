@@ -31,6 +31,7 @@ class UrlConstructor
     existing_url = Url.where(path: @url.path).first
 
     if !existing_url.nil?
+      boom = 1/0
       msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
       @url.errors.add(:path, msg)
       true
