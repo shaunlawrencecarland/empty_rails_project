@@ -13,7 +13,7 @@ class UrlConstructor
           # end
         end
       rescue ActiveRecord::RecordNotUnique => e
-        existing_url = Url.find_by(path: @path)
+        existing_url = Url.find_by(path: @url.path)
         # existing_url = Url.where(path: @url.path)
         #
         # # first_ex = existing_url.first
