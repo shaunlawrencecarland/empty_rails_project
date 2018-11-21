@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token
-  
+  add_flash_types :success, :warning
+
   rescue_from ActionController::ParameterMissing, with: :missing_params
 
   def missing_params(exception)
