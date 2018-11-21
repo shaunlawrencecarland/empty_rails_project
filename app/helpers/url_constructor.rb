@@ -5,7 +5,7 @@ class UrlConstructor
     ActiveRecord::Base.transaction do
       begin
         if Url.find_by(path: @url.path).present?
-          msg = "URL #{path} already exists.  Its slug is #{@url.slug}"
+          msg = "URL #{path} already exists.  Its slug is #{Url.find_by(path: @url.path).slug}"
           @url.errors.add(:path, msg)
           return @url
         end
