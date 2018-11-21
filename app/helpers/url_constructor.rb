@@ -13,10 +13,10 @@ class UrlConstructor
       rescue ActiveRecord::RecordNotUnique => e
         existing_url = Url.where(path: @url.path).limit(1)
         # first_ex = existing_url.first
-        puts "~~~: #{existing_url}"
+        # puts "~~~: #{existing_url}"
         # first =
         # existing_slug = existing_url.slug
-        msg = "#{existing_url.slug}"
+        msg = "error: #{e.to_s} existing_url: #{existing_url.to_s}"
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
       end
