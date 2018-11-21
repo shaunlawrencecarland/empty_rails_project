@@ -11,7 +11,7 @@ class UrlConstructor
         end
       rescue ActiveRecord::RecordNotUnique => e
         puts "we're inside the record not unique rescue block..."
-        existing_slug = UrlHelper.decode(@url.id)
+        existing_slug = UrlHelper.encode(@url.id)
         # existing_url = Url.where(path: @url.path).first
         msg = "URL #{path} already exists.  Its slug is #{existing_slug}"
         msg = "URL Already exists"
