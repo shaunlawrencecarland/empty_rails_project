@@ -20,7 +20,7 @@ class UrlConstructor
         # # puts "~~~: #{existing_url}"
         # # first =
         # # existing_slug = existing_url.slug
-        msg = "existing_url: #{existing_url.to_json} error to s: #{e.to_s} error inspect: #{e.inspect} error cause: #{e.cause} "
+        msg = " error to s: #{e.to_s} error inspect: #{e.inspect} error cause: #{e.cause} "
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
       end
