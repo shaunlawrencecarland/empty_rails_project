@@ -5,12 +5,12 @@ class UrlConstructor
     ActiveRecord::Base.transaction do
       begin
         if @url.valid?
-          if !path_already_exists?
+          # if !path_already_exists?
             break unless save_url!
             @slug = UrlHelper.encode(@url.id)
             @url.slug = UrlHelper.encode(@url.id)
             break unless save_url!
-          end
+          # end
         end
       rescue ActiveRecord::RecordNotUnique => e
         # existing_url = Url.where(path: @url.path)
