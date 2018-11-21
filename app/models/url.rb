@@ -6,6 +6,7 @@ class Url < ApplicationRecord
 
   before_save :prepend_path_with_protocol_if_missing
   validates :path, format: { with: URL_REGEX }
+
   # TODO: Put this in the UrlHelper module
   def self.valid_slug?(slug)
     !!(slug.match(SLUG_REGEX))
