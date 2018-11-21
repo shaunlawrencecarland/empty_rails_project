@@ -4,11 +4,16 @@ class UrlConstructor
 
     ActiveRecord::Base.transaction do
       begin
-        if path_already_exists?
-          # msg = "URL #{path} already exists.  Its slug is #{@url.slug}"
-          # @url.errors.add(:path, msg)
-          break
+        if Url.find_by(path: @url.path).present?
+          msg = "URL #{path} already exists.  Its slug is #{@url.slug}"
+          @url.errors.add(:path, msg)
+          return @url
         end
+        # if path_already_exists?
+        #   # msg = "URL #{path} already exists.  Its slug is #{@url.slug}"
+        #   # @url.errors.add(:path, msg)
+        #   break
+        # end
 
         if @url.valid?
           # if !path_already_exists?
@@ -37,16 +42,16 @@ class UrlConstructor
   end
 
   def self.path_already_exists?
-    existing_url = Url.find_by(path: @url.path)
-
-    if existing_url.present?
-      # boom = 1/0
-      msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
-      @url.errors.add(:path, msg)
-      true
-    else
-      false
-    end
+    # existing_url = Url.find_by(path: @url.path)
+    #
+    # if existing_url.present?
+    #   # boom = 1/0
+    #   msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
+    #   @url.errors.add(:path, msg)
+    #   true
+    # else
+    #   false
+    # end
   end
 
   def self.save_url!
