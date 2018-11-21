@@ -10,10 +10,8 @@ class UrlConstructor
           break unless save_url!
         end
       rescue ActiveRecord::RecordNotUnique => e
-        puts "we're inside the record not unique rescue block..."
-        # existing_url = Url.where(path: @url.path).first
-        # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
-        msg = "URL Already exists"
+        existing_url = Url.where(path: @url.path).first
+        msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
       end
     end
