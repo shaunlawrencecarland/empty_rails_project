@@ -4,6 +4,9 @@ class UrlConstructor
 
     ActiveRecord::Base.transaction do
       begin
+        if Url.find_by(path: @path).present?
+          boom = 1/0
+        end
         if @url.valid?
           # if !path_already_exists?
             break unless save_url!
