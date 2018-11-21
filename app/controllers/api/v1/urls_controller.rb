@@ -14,7 +14,7 @@ module Api
           redirect_to root_path
         else
           set_warning_flash
-          redirect_to root_path, status: :unprocessable_entity
+          redirect_to root_path
         end
       end
 
