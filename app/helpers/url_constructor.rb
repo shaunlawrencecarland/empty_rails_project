@@ -16,7 +16,7 @@ class UrlConstructor
         puts "~~~: #{existing_url}"
         # first =
         # existing_slug = existing_url.slug
-        msg = "foo"
+        msg = "#{existing_url.slug}"
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
         @url.errors.add(:path, msg)
       end
