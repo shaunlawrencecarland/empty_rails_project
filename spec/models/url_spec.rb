@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-# TODO: Remove slug column
 RSpec.describe Url, type: :model do
+
   describe "prepend_path_with_protocol_if_missing" do
     describe "when a url is created with a path not including the protocol" do
       let(:url) { FactoryBot.create(:url, path: "google.com") }
@@ -30,59 +30,45 @@ RSpec.describe Url, type: :model do
   end
 
   describe "path_validation" do
-    describe "invalid urls" do
+    context "invalid urls" do
       let(:url) { FactoryBot.create(:url, path: "foo") }
 
-      it "raises a ActiveRecord::RecordInvalid error" do
-        expect { url.save }.to raise_error(ActiveRecord::RecordInvalid)
+      it "raises an ActiveRecord::RecordInvalid error" do
+        expect { url.save! }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end
-  end
 
-  describe "self.valid_url?" do
-    context "invalid urls" do
-      let(:url) { "foo" }
 
-      it "returns false" do
-        expect(described_class.valid_url?(url)).to eq(false)
-      end
-    end
     context "valid urls" do
-      let(:url) { "google.com" }
-
-      it "returns true" do
-        expect(described_class.valid_url?(url)).to eq(true)
-      end
-
       describe "when the url has multiple domain extensions" do
-        let(:url) { "google.co.uk" }
+        let(:url) { FactoryBot.create(:url, path: "foo.co.uk") }
 
-        it "returns true" do
-          expect(described_class.valid_url?(url)).to eq(true)
+        it "does not raise an ActiveRecord::RecordInvalid error" do
+          expect{url.save!}.to_not raise_error(ActiveRecord::RecordInvalid)
         end
       end
 
       describe "when the url includes www" do
-        let(:url) { "www.google.com" }
+        let(:url) { FactoryBot.create(:url, path: "www.foo.com") }
 
-        it "returns true" do
-          expect(described_class.valid_url?(url)).to eq(true)
+        it "does not raise an ActiveRecord::RecordInvalid error" do
+          expect{url.save!}.to_not raise_error
         end
       end
 
       describe "when the url includes http://" do
-        let(:url) { "http://www.google.com" }
+        let(:url) { FactoryBot.create(:url, path: "http://foo.com") }
 
-        it "returns true" do
-          expect(described_class.valid_url?(url)).to eq(true)
+        it "does not raise an ActiveRecord::RecordInvalid error" do
+          expect{url.save!}.to_not raise_error(ActiveRecord::RecordInvalid)
         end
       end
 
       describe "when the url includes https://" do
-        let(:url) { "https://www.google.com" }
+        let(:url) { FactoryBot.create(:url, path: "https://foo.com") }
 
-        it "returns true" do
-          expect(described_class.valid_url?(url)).to eq(true)
+        it "does not raise an ActiveRecord::RecordInvalid error" do
+          expect{url.save!}.to_not raise_error(ActiveRecord::RecordInvalid)
         end
       end
     end
