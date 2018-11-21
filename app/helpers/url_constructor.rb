@@ -11,7 +11,7 @@ class UrlConstructor
           break unless save_url!
         end
       rescue ActiveRecord::RecordNotUnique => e
-        existing_url = Url.where(path: path).first
+        existing_url = Url.where(path: @url.path).first
         existing_slug = existing_url.slug
         msg = "foo"
         # msg = "URL #{path} already exists.  Its slug is #{existing_url.slug}"
