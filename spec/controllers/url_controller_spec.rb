@@ -23,9 +23,10 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
           subject
           expect(flash[:warning]).to match(/URL google.com already exists.  Its slug is foo/)
         end
-        it "returns a 302 status code" do
+
+        it "returns a 422 status code" do
           subject
-          expect(response.status).to eq(302)
+          expect(response.status).to eq(422)
         end
       end
     end
@@ -34,8 +35,8 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
       let(:params) { { url: { path: "bad url" } } }
       before(:each) { subject }
 
-      it "returns a 302 status code" do
-        expect(response.status).to eq(302)
+      it "returns a 422 status code" do
+        expect(response.status).to eq(422)
       end
 
       it "sets the warning flash message with the URL is invalid message" do
