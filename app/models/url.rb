@@ -1,6 +1,6 @@
 class Url < ApplicationRecord
-  before_save :prepend_path_with_protocol_if_missing
-  
+  before_create :prepend_path_with_protocol_if_missing
+
   validates_format_of :path, with: UrlHelper.url_regex,
     :message => "URL is in an invalid format"
 
