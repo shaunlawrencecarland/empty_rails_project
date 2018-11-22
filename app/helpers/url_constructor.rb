@@ -25,7 +25,7 @@ class UrlConstructor
     if @url.save!
       return true
     else
-      @url.errors.add(:base, "Error: URL could not be saved for an unknown reason")
+      @url.errors.add(:path, "Error: URL could not be saved for an unknown reason")
       return false
     end
   end

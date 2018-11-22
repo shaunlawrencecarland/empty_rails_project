@@ -27,7 +27,7 @@ RSpec.describe Api::V1::UrlsController, type: :controller do
 
       it "sets the warning flash message with the URL is invalid message" do
         subject
-        expect(flash[:warning]).to match(/URL is in an invalid format/)
+        expect(flash[:error]).to match(/URL is in an invalid format/)
       end
     end
   end

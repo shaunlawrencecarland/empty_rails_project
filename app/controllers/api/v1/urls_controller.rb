@@ -13,7 +13,7 @@ module Api
           flash[:success] = "URL shortened.  The slug is: #{@url.slug}"
           redirect_to root_path
         else
-          set_warning_flash
+          flash[:error] = @url.errors[:path].pop
           redirect_to root_path
         end
       end
@@ -21,10 +21,6 @@ module Api
       private
       def url_params
         params.require(:url).permit(:path)
-      end
-
-      def set_warning_flash
-        flash[:warning] = @url.errors.messages.values.first.first
       end
     end
   end

@@ -32,7 +32,7 @@ RSpec.describe UrlConstructor, type: :helper do
 
     it "returns a URL with the unknown error message" do
       constructed_url = described_class.create!("http://foo.com")
-      expected_error_msg = { :base => ["Error: URL could not be saved for an unknown reason"] }
+      expected_error_msg = { :path => ["Error: URL could not be saved for an unknown reason"] }
       expect(constructed_url.errors.messages).to eq(expected_error_msg)
     end
   end
