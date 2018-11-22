@@ -1,16 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Url, type: :model do
-
-  describe "prepend_path_with_protocol_if_missing" do
-    describe "when a url is created with a path not including the protocol" do
-      let(:url) { FactoryBot.create(:url, path: "google.com") }
-      it "prepends 'http://' to the front of the url path" do
-        expect(url.path).to eq('http://google.com')
-      end
-    end
-  end
-
   describe "path_validation" do
     context "invalid urls" do
       let(:url) { FactoryBot.create(:url, path: "foo") }
