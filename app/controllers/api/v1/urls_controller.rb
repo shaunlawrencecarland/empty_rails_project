@@ -13,7 +13,7 @@ module Api
           flash[:success] = "URL shortened.  The slug is: #{@url.slug}"
           redirect_to root_path
         else
-          flash[:error] = @url.errors[:path].pop
+          flash[:error] = @url.errors[:path].inject{ |str, error| str.concat(error) }
           redirect_to root_path
         end
       end
