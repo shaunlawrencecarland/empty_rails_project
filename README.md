@@ -1,24 +1,11 @@
-# README
+This is a copy of Bitly.  It's a URL shortener.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To use, go to the Heroku webpage: https://stark-wave-68246.herokuapp.com
 
-Things you may want to cover:
 
-* Ruby version
+Add in a URL.  You will be given a slug (the shortened version of the URL).  Type:
+https://stark-wave-68246.herokuapp.com/<SLUG>
+  
+And you will be redirected to your webpage!
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The URL shortner also contains a list of the top 100 most hit websites.
