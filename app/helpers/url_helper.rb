@@ -6,7 +6,7 @@ module UrlHelper
       slug = ''
 
       while i > 0 do
-        slug += CHARS[i.modulo(CHARS.length)]
+        slug.prepend(CHARS[i.modulo(CHARS.length)])
         i = i / CHARS.length
       end
 
