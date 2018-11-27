@@ -4,6 +4,7 @@ RSpec.describe UrlHelper, type: :helper do
   describe "self.encode" do
     it "encodes the integer correctly" do
       expect(described_class.encode(1)).to eq("b")
+      expect(described_class.encode(36)).to eq("ba")
     end
   end
 

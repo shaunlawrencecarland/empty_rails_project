@@ -9,8 +9,8 @@ module UrlHelper
         slug.prepend(CHARS[i.modulo(CHARS.length)])
         i = i / CHARS.length
       end
-
-      slug.reverse
+      
+      slug
     end
 
     def decode(slug)
