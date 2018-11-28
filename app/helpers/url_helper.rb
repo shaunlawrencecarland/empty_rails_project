@@ -16,11 +16,11 @@ module UrlHelper
     def decode(slug)
       base_10 = 0
       slug.chars.each_with_index do |c,i|
-        base_10 += CHARS.index(c)* (CHARS.length**i)
+        base_10 += CHARS.index(c) * (CHARS.length**i)
       end
       base_10
     end
- 
+
     def url_regex
       /\A[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)\z/
     end
