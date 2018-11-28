@@ -9,7 +9,7 @@ module UrlHelper
         slug.prepend(CHARS[i.modulo(CHARS.length)])
         i = i / CHARS.length
       end
-      
+
       slug
     end
 
@@ -22,7 +22,7 @@ module UrlHelper
     end
 
     def slug_regex
-      /^[a-zA-Z0-9]+$/
+      /\A[a-zA-Z0-9]+\z/
     end
   end
 end
