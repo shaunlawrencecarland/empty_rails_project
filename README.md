@@ -1,11 +1,3 @@
-This is a copy of Bitly.  It's a URL shortener.
+Getting an empty rails project up and running is a pain in the ass!
 
-To use, go to the Heroku webpage: https://stark-wave-68246.herokuapp.com
-
-
-Add in a URL.  You will be given a slug (the shortened version of the URL).  Type:
-https://stark-wave-68246.herokuapp.com/<SLUG>
-  
-And you will be redirected to your webpage!
-
-The URL shortner also contains a list of the top 100 most hit websites.
+This repo has a rails project set up with all of my favorite things set up (e.g. RSpec, Pry, etc).  So I can spend less time trying to get configurations working and moar time hacking!! ;D
