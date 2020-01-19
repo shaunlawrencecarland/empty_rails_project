@@ -10,20 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_19_014256) do
+ActiveRecord::Schema.define(version: 2020_01_19_015214) do
 
   create_table "foos", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "urls", force: :cascade do |t|
-    t.string "path"
-    t.string "slug"
-    t.integer "hit_count", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["path"], name: "index_urls_on_path", unique: true
   end
 
 end
