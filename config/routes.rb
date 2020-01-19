@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :foos
   # root "home#index"
   root "api/v1/urls#index"
 
